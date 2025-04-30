@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="{{ request.query_params.get('lang', 'es') }}">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ t.logs_title }}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-4">
+
+  <header class="bg-white dark:bg-gray-800  dark:text-white p-4">
+  <div class="max-w-3xl mx-auto flex items-center justify-between">
+    <div class="flex items-center space-x-4">
+      <div class="flex space-x-2">
+        <a href="?lang=es" title="Español" class="hover:opacity-80">🇪🇸</a>
+        <a href="?lang=en" title="English" class="hover:opacity-80">🇬🇧</a>
+        <a href="?lang=pt" title="Português" class="hover:opacity-80">🇵🇹</a>
+      </div>
+      <button onclick="toggleDarkMode()" class="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+        <span class="dark:hidden">🌙</span>
+        <span class="hidden dark:inline">☀️</span>
+      </button>
+    </div>
+    <h1 class="text-lg font-semibold flex-1 text-center">
+      {{ t.title }}
+    </h1>
+    <div class="flex space-x-4">
+      <a href="/logs?lang={{ request.query_params.get('lang', 'en') }}"
+      class="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+        {{ t.logs_title }}
+      </a>
+      <a href="/cache?lang={{ request.query_params.get('lang', 'en') }}"
+      class="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+        {{ t.cache_title }}
+      </a>
+    </div>
+  </div>
+</header>
+
+  <!-- Mostrar el contenido de los logs -->
+  <pre class="bg-white p-4 shadow rounded overflow-auto h-[80vh] whitespace-pre-wrap">{{ log_content }}</pre>
+
+  <!-- Enlace para regresar al home -->
+  <a href="/?lang={{ request.query_params.get('lang', 'es') }}" class="mt-4 inline-block text-blue-600">{{ t.back }}</a>
+
+</body>
+</html>

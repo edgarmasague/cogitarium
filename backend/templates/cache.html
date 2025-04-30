@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="{{ request.query_params.get('lang', 'es') }}">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ t.cache_title }}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-4">
+
+  <header class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold">{{ t.cache_title }}</h1>
+    
+    <!-- Selector de idioma -->
+    <select onchange="location.href='?lang=' + this.value" class="border p-1 rounded">
+      <option value="es" {% if request.query_params.get('lang', 'es') == 'es' %}selected{% endif %}>Español</option>
+      <option value="en" {% if request.query_params.get('lang') == 'en' %}selected{% endif %}>English</option>
+      <option value="pt" {% if request.query_params.get('lang') == 'pt' %}selected{% endif %}>Português</option>
+    </select>
+
+    <!-- Barra de búsqueda -->
+    <form method="get" action="/cache" class="flex gap-2">
+      <input type="text" name="q" value="{{ search_query }}" placeholder="{{ t.search_placeholder }}" class="border p-1 rounded" />
+      <button type="submit" class="bg-blue-500 text-white p-1 rounded">{{ t.search }}</button>
+    </form>
+  </header>
+
+  <ul class="bg-white p-4 shadow rounded space-y-2">
+    {% for prompt, response in cache_content %}
+    <li class="border-b pb-2">
+      <strong>Prompt:</strong> {{ prompt }}<br />
+      <strong>Response:</strong> {{ response }}
+      
+      <!-- Formulario para eliminar el caché -->
+      <form method="post" action="/cache/delete" class="mt-2">
+        <input type="hidden" name="question" value="{{ prompt }}" />
+        <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">{{ t.delete }}</button>
+      </form>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <a href="/?lang={{ request.query_params.get('lang', 'es') }}" class="mt-4 inline-block text-blue-600">{{ t.back }}</a>
+</body>
+</html>

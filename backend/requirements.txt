@@ -1,0 +1,29 @@
+# Core framework
+fastapi
+uvicorn
+
+# Template rendering
+jinja2
+
+# Data validation
+pydantic
+
+# AI client
+openai
+
+# For .env support
+python-dotenv
+
+# Azure support (optional, for azure auth if needed)
+azure-identity
+
+# Embeddings and vector DB
+lancedb
+sentence-transformers
+numpy
+
+langdetect
+deep-translator
+
+python-multipart
+lunr

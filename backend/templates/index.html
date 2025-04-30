@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="{{ request.query_params.get('lang', 'es') }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ t.title }}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header style="position: absolute; width: 100%; top: 0" class="bg-white dark:bg-gray-800  dark:text-white p-4">
+  <div class="max-w-3xl mx-auto flex items-center justify-between">
+    <div class="flex items-center space-x-4">
+      <div class="flex space-x-2">
+        <a href="?lang=es" title="Español" class="hover:opacity-80">🇪🇸</a>
+        <a href="?lang=en" title="English" class="hover:opacity-80">🇬🇧</a>
+        <a href="?lang=pt" title="Português" class="hover:opacity-80">🇵🇹</a>
+      </div>
+      <button onclick="toggleDarkMode()" class="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+        <span class="dark:hidden">🌙</span>
+        <span class="hidden dark:inline">☀️</span>
+      </button>
+    </div>
+    <h1 class="text-lg font-semibold flex-1 text-center">
+      {{ t.title }}
+    </h1>
+    <div class="flex space-x-4">
+      <a href="/logs?lang={{ request.query_params.get('lang', 'en') }}"
+      class="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+        {{ t.logs_title }}
+      </a>
+      <a href="/cache?lang={{ request.query_params.get('lang', 'en') }}"
+      class="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+        {{ t.cache_title }}
+      </a>
+    </div>
+  </div>
+</header>
+  <div class="bg-gray-100 dark:bg-gray-900 dark:text-white flex flex-col h-screen items-center transition-colors duration-300">
+  <!-- Chat messages -->
+  <main id="chat" style="margin-top: 64px;" class="flex-1 w-full max-w-xl px-4 py-6 overflow-y-auto space-y-4"></main>
+
+  <!-- Detected language info -->
+  <div id="lang-detected" class="text-sm text-gray-500 dark:text-gray-400 text-center mt-2"></div>
+
+  <!-- Chat form -->
+  <form id="form" class="w-full max-w-xl p-4 flex gap-2 bg-white dark:bg-gray-800 shadow">
+    <input id="input" type="text" placeholder="{{ t.input_placeholder }}" class="flex-1 border border-gray-300 dark:border-gray-600 rounded px-3 py-2 dark:bg-gray-700 dark:text-white" />
+    <button type="submit" class="bg-blue-500 text-white px-4 rounded">{{ t.send }}</button>
+  </form>
+  </div>
+  <!-- Scripts -->
+  <script>
+    function toggleDarkMode() {
+      document.documentElement.classList.toggle('dark');
+    }
+
+    const form = document.getElementById("form");
+    const input = document.getElementById("input");
+    const chat = document.getElementById("chat");
+    const langIndicator = document.getElementById("lang-detected");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text) return;
+
+      const userMsg = document.createElement("div");
+      userMsg.className = "bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 p-3 rounded-lg self-end w-fit max-w-xs ml-auto";
+      userMsg.textContent = text;
+      chat.appendChild(userMsg);
+      input.value = "";
+
+      const botMsg = document.createElement("div");
+      botMsg.className = "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 p-3 rounded-lg self-start w-fit max-w-xs";
+      botMsg.textContent = "🤖 {{ t.send }}...";
+      chat.appendChild(botMsg);
+      chat.scrollTop = chat.scrollHeight;
+
+      try {
+        const res = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: text })
+        });
+        const data = await res.json();
+        botMsg.textContent = data.reply;
+
+        // 🌐 Mostrar idioma detectado si existe
+        if (data.detected_lang) {
+          const langNames = { es: "Español", en: "English", pt: "Português" };
+          const name = langNames[data.detected_lang] || data.detected_lang;
+          langIndicator.textContent = `🌐 Idioma detectado: ${name}`;
+        } else {
+          langIndicator.textContent = "";
+        }
+
+      } catch (err) {
+        botMsg.textContent = "❌ Error de servidor.";
+      }
+    });
+  </script>
+</body>
+</html>

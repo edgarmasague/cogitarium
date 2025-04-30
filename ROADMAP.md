@@ -27,38 +27,39 @@ License: MIT
 - [x] Local search using Lunr
 - [x] Initial documentation (`README.md`)
 
-### 🛠️ Phase 2 – AI & Search Enhancements
-
+### ✅ Phase 2 – Multilingual AI & Search Core
 
 - [x] Query rewriting via `query_rewrite.py`
 - [x] Caching system for responses (`core/cache.py`)
 - [x] Logging system (`core/logger.py`)
-- [ ] Embeddings integration (Chroma or FAISS)
+- [ ] Embeddings integration (LanceDB)
 - [x] Multilingual support (English, Spanish, Portuguese)
-- [ ] Auto-detect & translate input/output
-- [ ] Organized code structure (`core/`, `routes/`, `templates/`)
-- [ ] Log & cache dashboard pages
+- [x] Auto-detect & translate input/output
+- [ ] Refactor & modularize code structure (`core/`, `routes/`, `templates/`)
+- [x] Frontend language switcher
+- [x] UX improvements (dark mode, smooth scrolling, loading states)
+
+### 🛠️ Phase 3 – Dashboards, Indexing & Advanced Search
+
 - [ ] Dashboard with query stats and search history
+- [ ] Log & cache dashboard pages
 - [ ] Semantic chunking + metadata indexing
 - [ ] File/tag-based search explorer
-- [ ] Frontend language switcher
-- [ ] UX improvements (dark mode, scroll, loading states)
 - [ ] Tests and `/health` endpoint
 
-
-### 🌐 Phase 3 – Modern Web App
+### 🌐 Phase 4 – Modern Web App
 
 - [ ] Frontend with React + Tailwind
 - [ ] Interactive features (history, login)
 - [ ] Backend communication via REST API
 
-### 🖥️ Phase 4 – Desktop App (Rust + Tauri)
+### 🖥️ Phase 5 – Desktop App (Rust + Tauri)
 
 - [ ] Cross-platform support (Windows, macOS, Linux)
 - [ ] App packaging and installer with Tauri
 - [ ] Optional local AI model integration
 
-### 🔄 Phase 5 – Extras & Scalability
+### 🔄 Phase 6 – Extras & Scalability
 
 - [ ] Authentication (OAuth or local)
 - [ ] Public and documented API
@@ -79,22 +80,25 @@ License: MIT
 - [x] Búsqueda local con Lunr
 - [x] Documentación inicial (`README.md`)
 
-### 🛠️ Fase 2 – Mejoras de AI y Búsqueda
+### ✅ Fase 2 – Núcleo Multilingüe de IA y Búsqueda
 
-- [x] Reescritura de consultas usando `query_rewrite.py`
-- [x] Sistema de cache de respuestas (`core/cache.py`)
+- [x] Reescritura de consultas vía `query_rewrite.py`
+- [x] Sistema de caché para respuestas (`core/cache.py`)
 - [x] Sistema de logs (`core/logger.py`)
-- [ ] Integración de embeddings (Chroma o FAISS)
-- [x] Soporte multilingüe (Inglés, Español, Portugués)
-- [ ] Detección y traducción automática de idioma
-- [ ] Estructura de código organizada (`core/`, `routes/`, `templates/`)
-- [ ] Páginas para ver logs y cache
-- [ ] Panel de control con estadísticas de búsqueda
-- [ ] Indexación semántica con metadatos
-- [ ] Explorador de archivos y etiquetas
-- [ ] Selector de idioma en el frontend
-- [ ] Mejora de UX (modo oscuro, scroll, estados de carga)
-- [ ] Tests y endpoint `/health`
+- [ ] Integración de embeddings (LanceDB)
+- [x] Soporte multilingüe (inglés, español, portugués)
+- [x] Detección automática y traducción de entrada/salida
+- [ ] Refactorización y organización modular del código (`core/`, `routes/`, `templates/`)
+- [x] Selector de idioma en el frontend
+- [x] Mejoras de UX (modo oscuro, scroll suave, estados de carga)
+
+### 🛠️ Fase 3 – Dashboards, Indexación y Búsqueda Avanzada
+
+- [ ] Panel de control con estadísticas de consultas e historial de búsqueda
+- [ ] Páginas de logs y caché para el dashboard
+- [ ] Fragmentación semántica + indexación de metadatos
+- [ ] Explorador de búsqueda por archivos/etiquetas
+- [ ] Pruebas y endpoint `/health`
 
 ### 🌐 Fase 3 – Web App Moderna
 
@@ -129,21 +133,24 @@ License: MIT
 - [x] Busca local com Lunr
 - [x] Documentação inicial (`README.md`)
 
-### 🛠️ Fase 2 – Melhorias de IA e Busca
+### ✅ Fase 2 – Núcleo Multilíngue de IA e Pesquisa
 
-- [x] Reescrita de perguntas com `query_rewrite.py`
+- [x] Reescrita de consultas via `query_rewrite.py`
 - [x] Sistema de cache para respostas (`core/cache.py`)
 - [x] Sistema de logs (`core/logger.py`)
-- [ ] Integração de embeddings (Chroma ou FAISS)
-- [x] Suporte multilíngue (Inglês, Espanhol, Português)
-- [ ] Detecção e tradução automática de idioma
-- [x] Estrutura organizada do código (`core/`, `routes/`, `templates/`)
-- [ ] Páginas de visualização para logs e cache
-- [ ] Dashboard com estatísticas e histórico de buscas
-- [ ] Indexação semântica com metadados
-- [ ] Explorador de arquivos e etiquetas
-- [ ] Seletor de idioma no frontend
-- [ ] Melhorias de UX (modo escuro, rolagem, estados de carregamento)
+- [ ] Integração de embeddings (LanceDB)
+- [x] Suporte multilíngue (inglês, espanhol, português)
+- [x] Detecção automática e tradução de entrada/saída
+- [ ] Refatoração e organização modular do código (`core/`, `routes/`, `templates/`)
+- [x] Seletor de idioma no frontend
+- [x] Melhorias de UX (modo escuro, rolagem suave, estados de carregamento)
+
+### 🛠️ Fase 3 – Painéis, Indexação e Pesquisa Avançada
+
+- [ ] Painel de controle com estatísticas de consultas e histórico de pesquisa
+- [ ] Páginas de logs e cache para o dashboard
+- [ ] Fragmentação semântica + indexação de metadados
+- [ ] Explorador de pesquisa por arquivos/tags
 - [ ] Testes e endpoint `/health`
 
 ### 🌐 Fase 3 – Aplicativo Web Moderno

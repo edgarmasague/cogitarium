@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="{{ request.query_params.get('lang', 'en')}}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ t.title }}</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="components/script.js"></script>
+        <style src="components/styles.css"></style>
+    </head>
+    <body class="bg-gray-100 dark:bg-gray-900 dark:text-white flex flex-col h-screen transition-colors duration-300">
+        {% include "components/header.html" %}
+        <main class="flex-1 overflow-y-auto p-4 max-w-3xl mx-auto w-full space-y-6">
+            <div class="animate-fade-in flex justify-start">
+                <div class="p-4 rounded-lg max-w-[70%] bg-emerald-900 dark:bg-emerald-800 text-white">
+                    <div class="font-medium mb-1 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot h-4 w-4" aria-hidden="true">
+                            <path d="M12 8V4H8"></path>
+                            <rect width="16" height="12" x="4" y="8" rx="2"></rect>
+                            <path d="M2 14h2"></path>
+                            <path d="M20 14h2"></path>
+                            <path d="M15 13v2"></path>
+                            <path d="M9 13v2"></path>
+                        </svg>
+                        {{ t.ia_name }}
+                    </div>
+                    <p>{{ t.welcome_message }}</p>
+                </div>
+            </div>
+        </main>
+        <div class="p-4">
+            <form class="max-w-3xl mx-auto flex gap-2">
+                <div class="flex-1 relative">
+                    <input placeholder="{{ t.input_placeholder }}" 
+                        class="w-full border border-gray-300 dark:border-gray-600 rounded-lg py-3 px-4 pr-12 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 dark:text-white" 
+                        autocomplete="off" type="text">
+                </div>
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white rounded-lg px-4 py-2 flex items-center justify-center transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send h-5 w-5" aria-hidden="true">
+                        <path d="m22 2-7 20-4-9-9-4Z"></path>
+                        <path d="M22 2 11 13"></path>
+                    </svg>
+                </button>
+            </form>
+            <p class="text-xs text-gray-600 dark:text-gray-400 text-center mt-2 max-w-3xl mx-auto">{{ t.disclaimer }}</p>
+        </div>
+    </body>
+</html>

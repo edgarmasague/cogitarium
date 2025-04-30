@@ -80,10 +80,13 @@ This is a modular project built using **FastAPI**, designed to offer an AI-power
 │   │   ├── embedder.py
 │   │   ├── embeddings.py
 │   │   ├── i18n.py
+│   │   ├── init.py
 │   │   ├── loader.py
 │   │   ├── logger.py
 │   │   ├── query_rewrite.py
-│   │   └── search.py
+│   │   ├── search.py
+│   │   ├── translator.py
+│   │   └── vector_store.py
 │   ├── data/
 │   ├── logs/
 │   ├── routes/

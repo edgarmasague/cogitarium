@@ -119,7 +119,7 @@ Built with **FastAPI**, **Jinja2**, and modern technologies, it allows you to st
 | `make install` | Installs all dependencies.             |
 | `make format`  | Formats code with Black.               |
 | `make lint`    | Runs code linting with Flake8.         |
-| `make clean`   | Removes all `__pycache__` folders.     |
+| `make clean`   | Removes all cache and logs folders.    |
 | `make help`    | Displays available Makefile commands.  |
 
 ---
@@ -200,7 +200,7 @@ Construido con **FastAPI**, **Jinja2** y tecnologías modernas, permite almacena
 | `make install` | Instala todas las dependencias.                    |
 | `make format`  | Formatea el código con Black.                      |
 | `make lint`    | Aplica revisión de estilo con Flake8.              |
-| `make clean`   | Elimina carpetas `__pycache__`.                    |
+| `make clean`   | Elimina carpetas de cache y logs.                  |
 | `make help`    | Muestra los comandos disponibles del Makefile.     |
 
 ---
@@ -282,5 +282,5 @@ Desenvolvido com **FastAPI**, **Jinja2** e tecnologias modernas, permite armazen
 | `make install` | Instala todas as dependências.                           |
 | `make format`  | Formata o código usando Black.                           |
 | `make lint`    | Verifica estilo do código com Flake8.                    |
-| `make clean`   | Remove pastas `__pycache__`.                             |
+| `make clean`   | Remove pastas de cache e logs.                           |
 | `make help`    | Mostra os comandos disponíveis.                          |

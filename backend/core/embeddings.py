@@ -10,10 +10,11 @@ Description:
 """
 
 from typing import List, Union
+
 import numpy as np
-from sentence_transformers import SentenceTransformer
+from config.config import DEFAULT_BATCH_SIZE, EMBEDDING_SIZE, MODEL_NAME
 from core.logger import setup_logger
-from config.config import MODEL_NAME, DEFAULT_BATCH_SIZE, EMBEDDING_SIZE
+from sentence_transformers import SentenceTransformer
 
 logger = setup_logger(__name__)
 
@@ -25,16 +26,15 @@ except Exception as e:
     logger.critical("🔥 Failed to load embedding model: %s", str(e))
     raise
 
+
 def embed_text(text: str, normalize: bool = True) -> List[float]:
     if not text or not isinstance(text, str):
         logger.error("Invalid text input: %s", text)
         raise ValueError("Input must be a non-empty string")
-    
+
     try:
         embedding = embedding_model.encode(
-            text, 
-            convert_to_numpy=True,
-            normalize_embeddings=normalize
+            text, convert_to_numpy=True, normalize_embeddings=normalize
         )
         logger.debug("Generated embedding for text: %s...", text[:50])
         return embedding.tolist()
@@ -42,24 +42,28 @@ def embed_text(text: str, normalize: bool = True) -> List[float]:
         logger.error("Embedding generation failed: %s", str(e))
         raise
 
-def embed_texts(texts: List[str], batch_size: int = DEFAULT_BATCH_SIZE) -> List[List[float]]:
+
+def embed_texts(
+    texts: List[str], batch_size: int = DEFAULT_BATCH_SIZE
+) -> List[List[float]]:
     if not texts or not isinstance(texts, list):
         logger.error("Invalid texts input")
         raise ValueError("Input must be a non-empty list of strings")
-    
+
     try:
         embeddings = embedding_model.encode(
-            texts,
-            batch_size=batch_size,
-            convert_to_numpy=True,
-            show_progress_bar=False
+            texts, batch_size=batch_size, convert_to_numpy=True, show_progress_bar=False
         )
-        logger.info("Generated %d embeddings (shape: %s)", 
-                   len(embeddings), str(embeddings.shape))
+        logger.info(
+            "Generated %d embeddings (shape: %s)",
+            len(embeddings),
+            str(embeddings.shape),
+        )
         return embeddings.tolist()
     except Exception as e:
         logger.error("Batch embedding failed: %s", str(e))
         raise
+
 
 def health_check() -> bool:
     try:

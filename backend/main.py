@@ -10,10 +10,10 @@ Description:
     It initializes the app, sets up middleware (like CORS), and includes all defined routes.
 """
 
+from core.init import init_cache, init_logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes import router as routes_router
-from core.init import init_cache, init_logging
 
 # Initialize FastAPI app
 app = FastAPI(

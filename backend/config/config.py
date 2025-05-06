@@ -10,6 +10,7 @@ Description:
     used across the application — including system messages and settings.
     It aims to centralize configuration in one place to simplify changes and maintenance.
 """
+
 import os
 from typing import List
 

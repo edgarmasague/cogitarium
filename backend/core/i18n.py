@@ -9,19 +9,22 @@ Description:
     Translation utility module for loading localized JSON language files.
     Provides fallback to English ('en') when requested translations are unavailable.
 """
+
 import json
 import os
+
 from config.config import TRANSLATIONS_PATH
+
 
 def get_translation(lang: str = "en") -> dict:
     """
-        Loads [lang].json translations with English fallback.
+    Loads [lang].json translations with English fallback.
 
-        Args:
-            lang: Language code (default 'es')
-            
-        Returns:
-            {key: text} mappings from JSON file
+    Args:
+        lang: Language code (default 'es')
+
+    Returns:
+        {key: text} mappings from JSON file
     """
     filepath = os.path.join(TRANSLATIONS_PATH, f"{lang}.json")
 

@@ -13,19 +13,21 @@ Description:
 
 import os
 import sqlite3
+
+from config.config import CACHE_DB, DEFAULT_LANG, TEMPLATES
+from core.i18n import get_translation
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from core.i18n import get_translation
-from config.config import TEMPLATES, DEFAULT_LANG, CACHE_DB
 
 # Initialize a router for the homepage
 router = APIRouter()
 
 # Set the templates directory
-templates = Jinja2Templates(directory = TEMPLATES)
+templates = Jinja2Templates(directory=TEMPLATES)
 
-@router.get("/cache", response_class = HTMLResponse)
+
+@router.get("/cache", response_class=HTMLResponse)
 async def show_cache(request: Request):
     lang = request.query_params.get("lang", DEFAULT_LANG)
     t = get_translation(lang)
@@ -39,8 +41,6 @@ async def show_cache(request: Request):
         cache_content = cursor.fetchall()
         conn.close()
 
-    return templates.TemplateResponse("cache.html", {
-        "request": request,
-        "cache_content": cache_content,
-        "t": t
-    })
+    return templates.TemplateResponse(
+        "cache.html", {"request": request, "cache_content": cache_content, "t": t}
+    )

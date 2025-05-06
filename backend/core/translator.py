@@ -10,8 +10,9 @@ Description:
     English and multiple languages using Google Translate API.
 """
 
-from langdetect import detect
 from deep_translator import GoogleTranslator
+from langdetect import detect
+
 
 def detect_language(text, source_lang):
 
@@ -19,18 +20,20 @@ def detect_language(text, source_lang):
         return detect(text)
     except:
         return source_lang
-    
+
+
 def translate_to_english(text, select_lang):
 
     source_lang = detect_language(text, select_lang)
-    
+
     if source_lang == "en":
         return text
     try:
         return GoogleTranslator(source=source_lang, target="en").translate(text)
     except Exception as e:
         return f"Error al traducir: {str(e)}"
-    
+
+
 def translate_from_english(text, target_lang):
 
     if target_lang == "en":

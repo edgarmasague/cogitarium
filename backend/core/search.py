@@ -8,12 +8,14 @@ License: MIT
 Description:
 
 """
-from lunr import lunr
+
 from core.logger import setup_logger
+from lunr import lunr
 
 # Global variables
 search_index = None
 logger = setup_logger(__name__)
+
 
 def build_index(docs):
     """
@@ -26,8 +28,9 @@ def build_index(docs):
         Lunr Index: In-memory search index.
     """
     global search_index
-    search_index = lunr(ref='id', fields=('title', 'content'), documents=docs)
+    search_index = lunr(ref="id", fields=("title", "content"), documents=docs)
     return search_index
+
 
 def search_index(query, limit=5):
     """

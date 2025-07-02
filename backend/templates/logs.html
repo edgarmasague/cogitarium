@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="{{ request.query_params.get('lang', 'en') }}">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{{ t.logs_title }}</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="components/script.js"></script>
+		<style src="components/styles.css"></style>
+	</head>
+	<body class="bg-gray-100 dark:bg-gray-900 dark:text-white flex flex-col h-screen transition-colors duration-300">
+		{% include "components/header.html" %}
+	<main class="flex-1 p-4 max-w-3xl mx-auto w-full animate-fade-in">
+		<div class="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden h-full flex flex-col">
+		<div class="bg-gray-50 dark:bg-gray-700 px-4 py-2 border-b border-gray-200 dark:border-gray-600 flex justify-between items-center">
+			<span class="text-sm text-gray-600 dark:text-gray-400">{{ t.log_count }}: {{ log_count }}</span>
+			<div class="flex space-x-2">
+			<button onclick="copyLogs()" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">
+				{{ t.copy }}
+			</button>
+			<a href="?lang={{ request.query_params.get('lang', 'es') }}&download=1" 
+				class="text-sm text-blue-600 dark:text-blue-400 hover:underline">
+				{{ t.download }}
+			</a>
+			</div>
+		</div>
+		<pre class="p-4 overflow-auto flex-1 text-gray-800 dark:text-gray-300 bg-white dark:bg-gray-800 whitespace-pre-wrap font-mono text-sm">{{ log_content }}</pre>
+		</div>
+	</main>
+	</body>
+</html>
